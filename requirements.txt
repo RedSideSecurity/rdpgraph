@@ -1,0 +1,4 @@
+Flask>=3.0.0
+python-evtx>=0.8.0
+lxml>=5.0.0
+Werkzeug>=3.0.0

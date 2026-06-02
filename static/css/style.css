@@ -1,0 +1,96 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background:#0f1419; color:#dde1e7; }
+
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 10px 20px; background:#161c24; border-bottom:1px solid #232b36;
+}
+.brand { display:flex; align-items:center; gap:12px; }
+.brand .logo { font-size:24px; color:#5b8def; }
+.brand h1 { margin:0; font-size:18px; font-weight:600; letter-spacing:.5px; }
+.brand .tag { color:#7c8794; font-size:12px; }
+.stats { color:#7c8794; font-size:13px; font-family: ui-monospace, monospace; }
+
+main { display:flex; height: calc(100vh - 50px); }
+
+#sidebar {
+  width:320px; min-width:320px; padding:16px; overflow-y:auto;
+  background:#13181f; border-right:1px solid #232b36;
+}
+
+.panel { margin-bottom:24px; }
+.panel h2 { font-size:13px; text-transform:uppercase; letter-spacing:1px; color:#7c8794; margin: 0 0 10px; }
+
+.dropzone {
+  display:block; padding:24px; border:2px dashed #2a3340; border-radius:8px;
+  text-align:center; cursor:pointer; background:#0f1419; color:#9aa5b1;
+  transition: border-color .15s, background .15s;
+}
+.dropzone:hover, .dropzone.drag { border-color:#5b8def; background:#172131; color:#dde1e7; }
+.dropzone span { display:block; font-weight:500; }
+.dropzone small { display:block; margin-top:4px; color:#7c8794; }
+
+#fileList { margin:10px 0; font-size:12px; font-family:ui-monospace,monospace; color:#9aa5b1; }
+#fileList .item { padding:3px 0; }
+
+button {
+  width:100%; padding:8px 12px; background:#5b8def; color:white; border:none;
+  border-radius:6px; cursor:pointer; font-weight:500; margin-top:6px;
+}
+button:disabled { background:#2a3340; color:#5a6573; cursor:not-allowed; }
+button.ghost { background:transparent; border:1px solid #2a3340; color:#9aa5b1; }
+button.ghost:hover:not(:disabled) { border-color:#5b8def; color:#dde1e7; }
+
+label { display:block; font-size:12px; color:#9aa5b1; margin-bottom:8px; }
+input[type=text], select {
+  width:100%; margin-top:4px; padding:6px 8px;
+  background:#0f1419; color:#dde1e7; border:1px solid #2a3340; border-radius:4px;
+  font-size:13px;
+}
+input[type=text]:focus, select:focus { outline:none; border-color:#5b8def; }
+
+#uploadStatus { font-size:12px; margin-top:8px; color:#7c8794; min-height:16px; }
+#uploadStatus.error { color:#e74c3c; }
+#uploadStatus.ok { color:#27ae60; }
+
+.legend { list-style:none; padding:0; margin:0; font-size:12px; color:#9aa5b1; }
+.legend li { padding:3px 0; display:flex; align-items:center; gap:8px; }
+.dot { width:12px; height:12px; border-radius:50%; display:inline-block; }
+.dot.pivot { background:#f6c84c; }
+.dot.server { background:#5b8def; }
+.dot.client { background:#9aa5b1; }
+.line { width:24px; height:3px; display:inline-block; border-radius:2px; }
+.line.green { background:#27ae60; }
+.line.orange { background:#e67e22; }
+.line.red { background:#e74c3c; }
+
+#graphWrap { flex:1; position:relative; }
+#graph { width:100%; height:100%; background:#0f1419; }
+
+#emptyState {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  text-align:center; color:#9aa5b1; max-width:480px;
+}
+#emptyState.hidden { display:none; }
+#emptyState h2 { color:#dde1e7; font-size:18px; margin:0 0 12px; }
+#emptyState code { background:#161c24; padding:2px 6px; border-radius:3px; font-size:11px; color:#5b8def; }
+
+#detail {
+  position:absolute; top:16px; right:16px;
+  width:600px; max-width:calc(100% - 32px); max-height:calc(100% - 32px);
+  background:#161c24; border:1px solid #232b36; border-radius:8px; padding:14px;
+  overflow:auto; box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  resize: horizontal;
+}
+#detail.hidden { display:none; }
+#detail h3 { margin:0 0 10px; font-size:14px; }
+#closeDetail {
+  width:24px; height:24px; padding:0; background:transparent; color:#9aa5b1;
+  border:none; cursor:pointer; font-size:18px; float:right; margin-top:-4px;
+}
+#detail table { width:100%; border-collapse:collapse; font-size:12px; font-family:ui-monospace,monospace; }
+#detail th, #detail td { text-align:left; padding:4px 6px; border-bottom:1px solid #232b36; }
+#detail th { color:#7c8794; font-weight:500; }
+#detail .status-success { color:#27ae60; }
+#detail .status-failed { color:#e74c3c; }
+#detail .status-logoff, #detail .status-disconnect, #detail .status-reconnect { color:#9aa5b1; }

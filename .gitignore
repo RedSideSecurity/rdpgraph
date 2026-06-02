@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Virtual environment
+venv/
+.venv/
+
+# Uploaded / parsed event logs (user data — never commit)
+uploads/
+*.evtx
+
+# Sample data scratch (keep the dir, ignore contents unless intentionally added)
+sample/*
+!sample/.gitkeep
+
+# Editor / OS cruft
+.idea/
+.vscode/
+*.swp
+.DS_Store

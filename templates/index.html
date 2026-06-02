@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RDPGraph — RDP Connection Visualizer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="logo">⛓</span>
+    <h1>RDPGraph</h1>
+    <span class="tag">RDP connection visualizer</span>
+  </div>
+  <div class="stats" id="stats">no data loaded</div>
+</header>
+
+<main>
+  <aside id="sidebar">
+    <section class="panel">
+      <h2>1. Load .evtx files</h2>
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="fileInput" accept=".evtx" multiple hidden>
+        <span>Drag &amp; drop .evtx files here</span>
+        <small>or click to browse</small>
+      </label>
+      <div id="fileList"></div>
+      <button id="uploadBtn" disabled>Parse &amp; render graph</button>
+      <div id="uploadStatus"></div>
+    </section>
+
+    <section class="panel">
+      <h2>2. Filter</h2>
+      <label>User contains
+        <input type="text" id="filterUser" placeholder="e.g. administrator">
+      </label>
+      <label>Host / IP contains
+        <input type="text" id="filterHost" placeholder="e.g. 10.0.0. or DC1">
+      </label>
+      <label>Status
+        <select id="filterStatus">
+          <option value="">(any)</option>
+          <option value="success">success</option>
+          <option value="failed">failed</option>
+          <option value="logoff">logoff</option>
+          <option value="disconnect">disconnect</option>
+          <option value="reconnect">reconnect</option>
+        </select>
+      </label>
+      <button id="applyFilter" disabled>Apply filter</button>
+      <button id="resetFilter" class="ghost" disabled>Reset</button>
+    </section>
+
+    <section class="panel">
+      <h2>Legend</h2>
+      <ul class="legend">
+        <li><span class="dot pivot"></span> pivot (both source &amp; target)</li>
+        <li><span class="dot server"></span> server (received RDP)</li>
+        <li><span class="dot client"></span> client (initiated RDP)</li>
+        <li><span class="line green"></span> all successful</li>
+        <li><span class="line orange"></span> mixed</li>
+        <li><span class="line red"></span> all failed</li>
+      </ul>
+    </section>
+  </aside>
+
+  <section id="graphWrap">
+    <div id="graph"></div>
+    <div id="emptyState" class="hidden">
+      <h2>No connections to draw</h2>
+      <p id="emptyMsg"></p>
+      <p style="font-size:12px; color:#7c8794; margin-top:14px">
+        Open <code id="debugLink"></code> in a new tab to see the raw parsed events.
+      </p>
+    </div>
+    <div id="detail" class="hidden">
+      <button id="closeDetail">×</button>
+      <h3 id="detailTitle">Event details</h3>
+      <div id="detailBody"></div>
+    </div>
+  </section>
+</main>
+
+<script src="{{ url_for('static', filename='js/graph.js') }}"></script>
+</body>
+</html>
